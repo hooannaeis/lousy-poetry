@@ -4,7 +4,9 @@
       <h1>// {{ story.content.title }}</h1>
       <p style="font-style=italic;">{{ story.published_at }}</p>
       <br />
-      <div v-html="$storyapi.richTextResolver.render(story.content.chapter_body)"></div>
+      <p>
+        {{ story.content.chapter_body }}
+      </p>
     </div>
     <div class="card__container">
       <h1 class="txt-is-fancy">another title</h1>
