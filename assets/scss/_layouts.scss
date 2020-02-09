@@ -1,0 +1,88 @@
+.nav__container {
+  position: relative;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: auto 1fr;
+  min-height: 3rem;
+  list-style: none;
+  background-color: $colorBright;
+  color: $colorDark;
+}
+
+.nav__logo {
+  background: $colorPrimary;
+  color: $colorDark;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  cursor: pointer;
+}
+
+.nav__links {
+  margin: auto;
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+
+.nav__elem {
+  cursor: pointer;
+  padding: 0 3rem;
+  &:hover {
+    text-transform: uppercase;
+    color: $colorPrimary;
+  }
+}
+
+footer {
+  height: 5rem;
+}
+
+.footer__container {
+  padding: .5rem;
+  border-top: 1px dotted $colorBright;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  list-style: none;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  & li {
+    padding: 0 2rem;
+    cursor: pointer;
+  }
+}
+
+.card__container {
+  max-width: $phoneBreakpoint;
+  background-color: $colorBright;
+  color: $colorDark;
+  border-radius: 1rem;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.card__container--mini {
+  border-radius: 1rem;
+}
+
+.is-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.is-primary {
+  background-color: $colorPrimary;
+  color: $colorDark;
+}
+
+.is-dark {
+  background-color: $colorDark;
+  color: $colorBright;
+};
+
