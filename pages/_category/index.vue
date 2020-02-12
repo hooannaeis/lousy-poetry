@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="categoryColors" class="card__container">
+    <div v-if="categoryColors" class="card__container card__container--mini">
       <h3>Content categories</h3>
       <div
         class="card__container card__container--mini"

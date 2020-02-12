@@ -58,7 +58,7 @@ export default {
     //   }
     // }
   },
-  components: { ChapterBody }
+  components: { ChapterBody },
   asyncData(context) {
     // Check if we are in the editor mode
     let version =
