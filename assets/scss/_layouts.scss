@@ -10,11 +10,15 @@
   list-style: none;
   background-color: $colorBright;
   color: $colorDark;
+  @media screen and (max-width: $phoneBreakpoint) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .nav__logo {
   background: $colorPrimary;
   color: $colorDark;
+  width: 100%;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   cursor: pointer;
 }
@@ -67,7 +71,15 @@ footer {
 }
 
 .card__container--mini {
-  border-radius: 1rem;
+  padding: 0.4rem;
+  margin: 0.4rem;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+};
+
+.card__container--active {
+  
 }
 
 .is-sticky {
@@ -85,4 +97,3 @@ footer {
   background-color: $colorDark;
   color: $colorBright;
 };
-
