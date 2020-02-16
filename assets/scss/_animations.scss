@@ -1,0 +1,19 @@
+@keyframes play27 {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: -1296px 0px;
+  }
+}
+.shapeshifter {
+  animation-duration: 900ms;
+  animation-timing-function: steps(27);
+  animation-fill-mode: forwards;
+  width: 48px;
+  height: 48px;
+  background-repeat: no-repeat;
+}
+.shapeshifter.play {
+  animation-name: play27;
+}

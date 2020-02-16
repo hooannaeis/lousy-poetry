@@ -34,8 +34,21 @@
   cursor: pointer;
   padding: 0 3rem;
   &:hover {
-    text-transform: uppercase;
     color: $colorPrimary;
+  }
+}
+
+.border-top--dark {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px dotted $colorDark
+}
+.grid__container {
+  &--3c {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    padding: 1rem;
   }
 }
 
@@ -44,7 +57,7 @@ footer {
 }
 
 .footer__container {
-  padding: .5rem;
+  padding: 0.5rem;
   border-top: 1px dotted $colorBright;
   position: absolute;
   left: 0;
@@ -70,22 +83,40 @@ footer {
   padding: 2rem;
 }
 
-.card__container--mini {
-  padding: 0.4rem;
-  margin: 0.4rem;
-  width: fit-content;
-  height: fit-content;
-  cursor: pointer;
-};
 
-.card__container--active {
-  
+@each $colorName in 'colorPrimary' 'colorDark' 'colorBright' {
+  .is-neumorph--#{$colorName} {
+    -webkit-box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%), -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
+    box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%), -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
+    -webkit-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    background-color: map-get($colorMap, $colorName);
+    transition: 0.2s ease-in-out;
+    &:hover {
+      -webkit-box-shadow: 4px 4px 8px darken(map-get($colorMap, $colorName), 15%), -4px -4px 8px lighten(map-get($colorMap, $colorName), 15%);
+      box-shadow: 4px 4px 8px darken(map-get($colorMap, $colorName), 15%), -4px -4px 8px lighten(map-get($colorMap, $colorName), 15%);
+    }
+  }
 }
 
-.is-sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+@for $i from 1 through 5 {
+  .is-darkish--#{$i} {
+    background: darken($colorBright, $i * 10%);
+  }
+}
+
+.is-accent {
+  background: $colorPrimary;
+}
+
+.is-mini {
+  margin: 0.4rem auto;
+  padding: 0.4rem;
+}
+
+.is-offset {
+  margin-top: -3rem;
+  max-width: calc(#{$phoneBreakpoint} - 2rem);
 }
 
 .is-primary {
@@ -96,4 +127,4 @@ footer {
 .is-dark {
   background-color: $colorDark;
   color: $colorBright;
-};
+}

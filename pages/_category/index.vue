@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-if="categoryColors" class="card__container card__container--mini">
+    <div v-if="categoryColors" class="card__container is-mini">
       <h3>Content categories</h3>
       <div
-        class="card__container card__container--mini"
-        v-for="(categoryColor, categoryName) in categoryColors"
+        class="card__container is-mini"
+        v-for="(categoryColor, categoryName, categoryIndex) in categoryColors"
         v-bind:key="categoryName"
-        :style="{ background: categoryColor }"
+        :class="'is-darkish--' + (categoryIndex+1)"
         @click="toggleFilter(categoryName)"
       >{{ categoryName }}</div>
     </div>
@@ -14,7 +14,7 @@
       class="card__container"
       v-for="(story, storyIndex) in filteredCategories"
       v-bind:key="storyIndex"
-      :style="{ background: categoryColors[story.full_slug.split('/')[0] ] }"
+      :class="'is-darkish--' + (categoryColors[story.full_slug.split('/')[0] ])"
     >
       <nuxt-link :to="story.full_slug" :name="story.name">
         <h2>{{ story.content.title }}</h2>
@@ -37,10 +37,13 @@ export default {
     categoryColors: function() {
       if (this.stories) {
         let agg = {}
-        let index = 0
+        let index = 1
         this.stories.forEach(element => {
-          agg[element.full_slug.split('/')[0]] = this.colorRange[index]
-          index++
+          // if category not yet in agg-object
+          if (!agg[element.full_slug.split('/')[0]]) {
+            agg[element.full_slug.split('/')[0]] = index
+            index++
+          }
         })
         return agg
       }
@@ -60,9 +63,9 @@ export default {
   methods: {
     toggleFilter: function(categoryName) {
       if (this.currentCategory === categoryName) {
-        this.currentCategory = undefined;
+        this.currentCategory = undefined
       } else {
-        this.currentCategory = categoryName;
+        this.currentCategory = categoryName
       }
     }
   },
