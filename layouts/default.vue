@@ -2,15 +2,17 @@
   <div style="position:relative; min-height: 100vh">
     <nav class="nav__container">
       <div class="nav__logo">
-        <IconBase
-          viewBox="0 0 280 160"
-          iconName="logo"
-          width="10rem"
-          iconColor="#2B2B2B"
-          iconFillColor="#2B2B2B"
-        >
-          <LousyLogo />
-        </IconBase>
+        <nuxt-link to="/">
+          <IconBase
+            viewBox="0 0 280 160"
+            iconName="logo"
+            width="10rem"
+            iconColor="#2B2B2B"
+            iconFillColor="#2B2B2B"
+          >
+            <LousyLogo />
+          </IconBase>
+        </nuxt-link>
       </div>
       <ul class="nav__links">
         <nuxt-link to="/categories">
