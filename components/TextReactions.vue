@@ -12,7 +12,7 @@
         <div
           class="shapeshifter"
           :class="[activeReaction === reactionIndex ? 'play' : '']"
-          style="background-image: url(/flameAnimation.svg)"
+          :style="'background-image: url(' + reaction + ')'"
         ></div>
       </div>
     </div>
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       activeReaction: undefined,
-      availableReactions: ['😊', '😃', '🙂']
+      availableReactions: ['/heartAnimation.svg', '/flameAnimation.svg', '/smileyAnimation.svg']
     }
   }
 }
