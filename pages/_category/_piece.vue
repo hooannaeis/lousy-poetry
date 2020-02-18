@@ -4,7 +4,7 @@
       <h1>// {{ story.content.title }}</h1>
       <p style="font-style=italic;">{{ story.published_at }}</p>
       <br />
-      <ChapterBody :unformattedChapterBody="story.content.chapter_body"/>
+      <ChapterBody :unformattedChapterBody="story.content.chapter_body" />
       <TextReactions />
     </div>
     <div class="card__container is-offset is-darkish--1">
@@ -43,6 +43,12 @@ export default {
           message: res.response.data
         })
       })
+  },
+  created() {
+    // set the currently active piece to the store so that other components can work with it
+    this.$store.commit('SET_ACTIVE_PIECE_ID', {
+      activePieceId: this.story.id
+    })
   }
 }
 </script>

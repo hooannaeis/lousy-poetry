@@ -18,7 +18,8 @@
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.2",
-    "storyblok-nuxt": "^1.1.0"
+    "storyblok-nuxt": "^1.1.0",
+    "vuex-persistedstate": "^2.7.1"
   },
   "devDependencies": {
     "eslint-config-prettier": "^4.1.0",
