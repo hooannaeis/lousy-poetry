@@ -28,8 +28,6 @@ export default {
     let version =
       context.query._storyblok || context.isDev ? 'draft' : 'published'
 
-    // Load the JSON from the API
-    console.log(context.params)
     return context.app.$storyapi
       .get(`cdn/stories/${context.params.category}/${context.params.piece}`, {
         version: version
@@ -46,7 +44,7 @@ export default {
   },
   created() {
     // set the currently active piece to the store so that other components can work with it
-    this.$store.commit('SET_ACTIVE_PIECE_ID', {
+    this.$store.commit('textReactions/SET_ACTIVE_PIECE_ID', {
       activePieceId: this.story.id
     })
   }
