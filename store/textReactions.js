@@ -71,6 +71,17 @@ export const actions = {
       fbUpdate[
         state[state.activePieceId]
       ] = firebase.firestore.FieldValue.increment(-1)
+    } else {
+      // if there is no reaction, it may be that
+      // no one ever reacted to this piece before
+      // therefore, we set the remaining reaction to 0
+      state.availableReactions.forEach(reaction => {
+        if (reaction !== params.reactionType) {
+          fbUpdate[
+            reaction
+          ] = firebase.firestore.FieldValue.increment(0)
+        }
+      })
     }
 
     commit('UPDATE_LOCAL_REACTIONS', {

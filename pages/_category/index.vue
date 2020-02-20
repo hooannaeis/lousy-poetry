@@ -10,17 +10,19 @@
         @click="toggleFilter(categoryName)"
       >{{ categoryName }}</div>
     </div>
-    <div
-      class="card__container"
-      v-for="(story, storyIndex) in filteredCategories"
-      v-bind:key="storyIndex"
-      :class="'is-darkish--' + (categoryColors[story.full_slug.split('/')[0] ])"
-    >
-      <nuxt-link :to="story.full_slug" :name="story.name">
-        <h2>{{ story.content.title }}</h2>
-        <p>{{ story.full_slug.split('/')[0] }} // {{ story.published_at }}</p>
-      </nuxt-link>
-    </div>
+    <transition-group name="list" tag="ul">
+      <div
+        class="card__container"
+        v-for="story in filteredCategories"
+        v-bind:key="story.id"
+        :class="'is-darkish--' + (categoryColors[story.full_slug.split('/')[0] ])"
+      >
+        <nuxt-link :to="story.full_slug" :name="story.name">
+          <h2>{{ story.content.title }}</h2>
+          <p>{{ story.full_slug.split('/')[0] }} // {{ story.published_at }}</p>
+        </nuxt-link>
+      </div>
+    </transition-group>
   </div>
 </template>
 
