@@ -3,11 +3,7 @@ import { fireDb } from '~/plugins/firebase.js'
 
 export const state = () => ({
   activePieceId: undefined,
-  availableReactions: [
-    'heartAnimation',
-    'flameAnimation',
-    'smileyAnimation'
-  ],
+  availableReactions: ['heartAnimation', 'flameAnimation', 'smileyAnimation'],
   globalReactions: {}
 })
 
@@ -23,8 +19,8 @@ export const mutations = {
       state['globalReactions'] = { ...payload }
     } else {
       let globalObj = {}
-      state.availableReactions.forEach(reaction => globalObj[reaction] = 0);
-      state.globalReactions = globalObj;
+      state.availableReactions.forEach(reaction => (globalObj[reaction] = 0))
+      state.globalReactions = globalObj
     }
   },
   UPDATE_LOCAL_REACTIONS(state, payload) {
@@ -44,17 +40,16 @@ export const actions = {
     fireDb
       .collection('text-reactions')
       .doc(state.activePieceId.toString())
-      .get()
-      .then(doc => {
+      .onSnapshot(function(doc) {
         if (doc.exists) {
           commit('SET_GLOBAL_REACTIONS', doc.data())
         } else {
           commit('SET_GLOBAL_REACTIONS')
           console.log('no exist doc')
         }
-      })
-      .catch(error => {
+      }, function(error) {
         console.log('Error getting document:', error)
+
       })
   },
   async REACT_TO_TEXT({ state, commit }, params) {
@@ -77,9 +72,7 @@ export const actions = {
       // therefore, we set the remaining reaction to 0
       state.availableReactions.forEach(reaction => {
         if (reaction !== params.reactionType) {
-          fbUpdate[
-            reaction
-          ] = firebase.firestore.FieldValue.increment(0)
+          fbUpdate[reaction] = firebase.firestore.FieldValue.increment(0)
         }
       })
     }

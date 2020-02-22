@@ -101,7 +101,7 @@ footer {
 
 @for $i from 1 through 5 {
   .is-darkish--#{$i} {
-    background: darken($colorBright, $i * 10%);
+    background: darken($colorBright, $i * 5%);
   }
 }
 

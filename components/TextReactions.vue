@@ -14,7 +14,9 @@
           :class="[activeReaction === reactionType ? 'play' : '']"
           :style="'background-image: url(/' + reactionType + '.svg)'"
         ></div>
-        <span class="txt-is-centered txt-is-bold">{{ globalReactions[reactionType] }}</span>
+        <transition name="slide-fade" mode="out-in">
+          <span class="txt-is-centered txt-is-bold" :key="globalReactions[reactionType]">{{ globalReactions[reactionType] }}</span>
+        </transition>
       </div>
     </div>
   </div>
@@ -25,14 +27,16 @@ export default {
   data() {
     return {
       activeReaction: undefined,
+      keyValue: false
     }
   },
   computed: {
-    availableReactions () {
-      return this.$store.state.textReactions.availableReactions;
+    availableReactions() {
+      return this.$store.state.textReactions.availableReactions
     },
-    globalReactions () {
-      return this.$store.state.textReactions.globalReactions;
+    globalReactions() {
+      console.log('hello')
+      return this.$store.state.textReactions.globalReactions
     }
   },
   methods: {
