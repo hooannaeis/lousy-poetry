@@ -10,23 +10,30 @@
         @click="toggleFilter(categoryName)"
       >{{ categoryName }}</div>
     </div>
-    <transition-group name="list" tag="ul">
-      <div
-        class="card__container"
-        v-for="story in filteredCategories"
-        v-bind:key="story.id"
-        :class="'is-darkish--' + (categoryColors[story.full_slug.split('/')[0] ])"
-      >
-        <nuxt-link :to="story.full_slug" :name="story.name">
-          <h2>{{ story.content.title }}</h2>
-          <p>{{ story.full_slug.split('/')[0] }} // {{ story.published_at }}</p>
-        </nuxt-link>
-      </div>
-    </transition-group>
+    <div
+      class="card__container"
+      v-for="story in filteredCategories"
+      v-bind:key="story.id"
+      :class="'is-darkish--' + (categoryColors[story.full_slug.split('/')[0] ])"
+    >
+      <nuxt-link :to="story.full_slug" :name="story.name">
+        <h2>{{ story.content.title }}</h2>
+        <p>{{ story.full_slug.split('/')[0] }} // {{ story.content.creation_date }}</p>
+        <div class="tag__container">
+          <span cla v-for="tag in story.tag_list" :key="tag">{{tag }}</span>
+        </div>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
+<style lang="scss" scoped>
+div.tag__container span { margin-right: 1rem }
+</style>
+
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -37,10 +44,10 @@ export default {
   },
   computed: {
     categoryColors: function() {
-      if (this.stories) {
+      if (this.PieceItems.items) {
         let agg = {}
         let index = 1
-        this.stories.forEach(element => {
+        this.PieceItems.items.forEach(element => {
           // if category not yet in agg-object
           if (!agg[element.full_slug.split('/')[0]]) {
             agg[element.full_slug.split('/')[0]] = index
@@ -51,13 +58,13 @@ export default {
       }
     },
     filteredCategories: function() {
-      if (this.stories) {
+      if (this.PieceItems.items) {
         if (this.currentCategory) {
-          return this.stories.filter(story =>
+          return this.PieceItems.items.filter(story =>
             story.full_slug.includes(this.currentCategory)
           )
         } else {
-          return this.stories
+          return this.PieceItems.items
         }
       }
     }
@@ -71,26 +78,43 @@ export default {
       }
     }
   },
-  asyncData(context) {
-    // Check if we are in the editor mode
+  async asyncData(context) {
     let version =
       context.query._storyblok || context.isDev ? 'draft' : 'published'
-
-    // Load the JSON from the API
-    console.log(context.params)
-    return context.app.$storyapi
-      .get(`cdn/stories/`, {
-        version: version
+    try {
+      const res = await axios.post(
+        'https://gapi.storyblok.com/v1/api',
+        {
+          query: `{
+          PieceItems {
+            items {
+              id
+              name
+              full_slug
+              tag_list
+              content {
+                title
+                creation_date
+              }
+            }
+          }
+        }`,
+          variables: null
+        },
+        {
+          headers: {
+            token: 'AUqJMpG70Yy1tF0HwtCZuQtt',
+            version: version
+          }
+        }
+      )
+      return res.data.data
+    } catch (res) {
+      context.error({
+        statusCode: res.response.status,
+        message: res.response.data
       })
-      .then(res => {
-        return res.data
-      })
-      .catch(res => {
-        context.error({
-          statusCode: res.response.status,
-          message: res.response.data
-        })
-      })
+    }
   }
 }
 </script>
