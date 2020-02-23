@@ -35,16 +35,7 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    [
-      'storyblok-nuxt',
-      {
-        accessToken: 'AUqJMpG70Yy1tF0HwtCZuQtt',
-        cacheProvider: 'memory'
-      }
-    ],
-    '@nuxtjs/style-resources'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/style-resources'],
   styleResources: {
     scss: ['assets/scss/main.scss']
   },
@@ -52,7 +43,15 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxyHeaders: false,
+    headers: {
+      post: {
+        'token': 'AUqJMpG70Yy1tF0HwtCZuQtt',
+        'version': 'published'
+      }
+    }
+  },
   /*
    ** Build configuration
    */

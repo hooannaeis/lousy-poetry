@@ -1,6 +1,6 @@
 <template>
   <div class="border-top--dark">
-    <h4 class="txt-is-fancy">whaddaya think?</h4>
+    <h2 class="txt-is-fancy">whaddaya think?</h2>
     <div class="grid__container--3c">
       <div
         v-for="(reactionType, reactionIndex) in availableReactions"
@@ -35,7 +35,6 @@ export default {
       return this.$store.state.textReactions.availableReactions
     },
     globalReactions() {
-      console.log('hello')
       return this.$store.state.textReactions.globalReactions
     }
   },

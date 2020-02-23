@@ -1,15 +1,14 @@
 <template>
   <div>
     <div class="card__container" style="padding-bottom: 3rem;">
-      <h1>// {{ story.content.title }}</h1>
-      <p style="font-style=italic;">{{ story.creation_date }}</p>
+      <h1>// {{ story.name }}</h1>
+      <p style="font-style=italic;">{{ story.content.creation_date }}</p>
       <br />
       <ChapterBody :unformattedChapterBody="story.content.chapter_body" />
       <TextReactions />
     </div>
     <div class="card__container is-offset is-darkish--1">
-      <h1 class="txt-is-fancy">another title</h1>
-      <p>another subtilte</p>
+      <SimilarStories :parentId="story.id" :parentTags="story.tag_list" />
     </div>
   </div>
 </template>
@@ -17,47 +16,49 @@
 <script>
 import ChapterBody from '@/components/ChapterBody'
 import TextReactions from '@/components/TextReactions'
-import axios from 'axios'
+import SimilarStories from '@/components/SimilarStories'
 
 export default {
-  components: { ChapterBody, TextReactions },
-  async asyncData(context) {
-    let version =
-      context.query._storyblok || context.isDev ? 'draft' : 'published'
+  components: { ChapterBody, TextReactions, SimilarStories },
+  async asyncData({ $axios, params }) {
     try {
-      const res = await axios.post(
-        'https://gapi.storyblok.com/v1/api',
-        {"query":`{
-          PieceItems(starts_with: "${context.params.category}/${context.params.piece}") {
+      const res = await $axios.$post('https://gapi.storyblok.com/v1/api', {
+        query: `{
+          PieceItems(starts_with: "${params.category}/${params.piece}") {
             items {
               id
+              name
               full_slug
+              tag_list
               content {
                 chapter_body
-                title
                 creation_date
               }
             }
           }
-        }`,"variables":null},
-        {
-          headers: {
-            token: 'AUqJMpG70Yy1tF0HwtCZuQtt',
-            version: version
-          }
-        }
-      )
-      return res.data.data
+        }`,
+        variables: null
+      })
+      return res.data
     } catch (res) {
-      context.error({
-          statusCode: res.response.status,
-          message: res.response.data
-        })
+      console.error('axios error ', res)
     }
   },
   computed: {
     story: function() {
-      return this.PieceItems.items[0]
+      if (this.PieceItems && this.PieceItems.items) {
+        return this.PieceItems.items[0]
+      } else {
+        return {
+          name: 'example name',
+          id: 'exampleId',
+          tag_list: ['some tag'],
+          content: {
+            creation_date: "some date",
+            chapter_body: "some body"
+          }
+        }
+      }
     }
   },
   created() {

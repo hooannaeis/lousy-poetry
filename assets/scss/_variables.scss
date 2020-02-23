@@ -1,16 +1,16 @@
-$colorPrimary: #90D086;
+$colorPrimary: #2dea8f;
 
-$colorDark: #2B2B2B;
-$colorDarkDark: #252525;
-$colorDarkBright: #313131;
+$colorDark: #243d44;
+$colorDarkDark: darken($colorDark, 8%);
+$colorDarkBright: lighten($colorDark, 8%);
 
-$colorBright: #E0E2DB;
-$colorBrightDark: #bec0ba;
-$colorBrightBright: #fffffc;
+$colorBright: #f6f6f6;
+$colorBrightDark: darken($colorBright, 8%);
+$colorBrightBright: lighten($colorBright, 8%);
 
 $colorMap: (
-  colorPrimary: #90D086,
-  colorDark: #2B2B2B,
+  colorPrimary: #2dea8f,
+  colorDark: #243d44,
   colorBright: #E0E2DB
 );
 

@@ -16,10 +16,10 @@
       </div>
       <ul class="nav__links">
         <nuxt-link to="/categories">
-          <h3 class="nav__elem">whats dis? //</h3>
+          <h3 class="nav__elem">what dis? //</h3>
         </nuxt-link>
         <nuxt-link to="/who-dis">
-          <h3 class="nav__elem">whos dis? //</h3>
+          <h3 class="nav__elem">who dis? //</h3>
         </nuxt-link>
       </ul>
     </nav>

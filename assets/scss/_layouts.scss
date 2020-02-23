@@ -92,6 +92,7 @@ footer {
     -o-transition: 0.2s ease-in-out;
     background-color: map-get($colorMap, $colorName);
     transition: 0.2s ease-in-out;
+    cursor: pointer;
     &:hover {
       -webkit-box-shadow: 4px 4px 8px darken(map-get($colorMap, $colorName), 15%), -4px -4px 8px lighten(map-get($colorMap, $colorName), 15%);
       box-shadow: 4px 4px 8px darken(map-get($colorMap, $colorName), 15%), -4px -4px 8px lighten(map-get($colorMap, $colorName), 15%);
@@ -107,6 +108,11 @@ footer {
 
 .is-accent {
   background: $colorPrimary;
+}
+
+.is-ghost {
+  background: transparent;
+  border: 1px solid $colorDark;
 }
 
 .is-mini {
