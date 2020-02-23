@@ -36,7 +36,6 @@ export const mutations = {
 // data to be accessible ---> api calls
 export const actions = {
   async SET_GLOBAL_REACTIONS({ state, commit }) {
-    console.log(state)
     fireDb
       .collection('text-reactions')
       .doc(state.activePieceId.toString())

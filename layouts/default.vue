@@ -2,8 +2,8 @@
   <div style="position:relative; min-height: 100vh">
     <nav class="nav__container">
       <div class="nav__logo">
-        <nuxt-link to="/">
-          <IconBase
+        <nuxt-link to="/categories">
+          <!-- <IconBase
             viewBox="0 0 280 160"
             iconName="logo"
             width="10rem"
@@ -11,17 +11,10 @@
             iconFillColor="#2B2B2B"
           >
             <LousyLogo />
-          </IconBase>
+          </IconBase> -->
+          <img src="/lousy-poetry-logo.png" alt="text saying lousy poetry in cursive writing">
         </nuxt-link>
       </div>
-      <ul class="nav__links">
-        <nuxt-link to="/categories">
-          <h3 class="nav__elem">what dis? //</h3>
-        </nuxt-link>
-        <nuxt-link to="/who-dis">
-          <h3 class="nav__elem">who dis? //</h3>
-        </nuxt-link>
-      </ul>
     </nav>
     <nuxt />
     <footer>
@@ -46,12 +39,24 @@ export default {
     LousyLogo,
     IconBase
   },
+  computed: {
+    pageTitle: function() {
+      const baseTitle = "LP // "
+      if (this.$route.params && this.$route.params.piece) {
+        return baseTitle + this.$route.params.piece
+      } else if (this.$route.name) {
+        return baseTitle + this.$route.name
+      } else {
+        return baseTitle
+      }
+    }
+  },
   head() {
     return {
-      title: this.$route.name,
+      title: this.pageTitle,
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: this.$route.name }
+        { hid: this.pageTitle }
       ]
     }
   }

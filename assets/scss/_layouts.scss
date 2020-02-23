@@ -5,7 +5,7 @@
   justify-items: center;
   align-items: center;
   text-align: center;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto;
   min-height: 3rem;
   list-style: none;
   background-color: $colorBright;
@@ -21,6 +21,9 @@
   width: 100%;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   cursor: pointer;
+  & img {
+    height: 6rem;
+  }
 }
 
 .nav__links {
@@ -118,6 +121,7 @@ footer {
 .is-mini {
   margin: 0.4rem auto;
   padding: 0.4rem;
+  line-height: 3rem;
 }
 
 .is-offset {

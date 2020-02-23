@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition name="grow">
-      <div class="card__container is-dark is-neumorph--colorDark" v-if="filteredTags.length">
+      <div class="card__container is-dark is-mini is-neumorph--colorDark" v-if="filteredTags.length">
         <h3>filtered tags</h3>
         <div class="tag__container">
           <span
@@ -44,7 +44,6 @@
   & span {
     margin-right: 0.5rem;
     white-space: nowrap;
-    line-height: 3rem;
   }
   & span::before {
     content: '🏷️  ';
