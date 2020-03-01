@@ -2,16 +2,7 @@
   <div style="position:relative; min-height: 100vh">
     <nav class="nav__container">
       <div class="nav__logo">
-        <nuxt-link to="/categories">
-          <!-- <IconBase
-            viewBox="0 0 280 160"
-            iconName="logo"
-            width="10rem"
-            iconColor="#2B2B2B"
-            iconFillColor="#2B2B2B"
-          >
-            <LousyLogo />
-          </IconBase> -->
+        <nuxt-link to="/">
           <img src="/lousy-poetry-logo.png" alt="text saying lousy poetry in cursive writing">
         </nuxt-link>
       </div>

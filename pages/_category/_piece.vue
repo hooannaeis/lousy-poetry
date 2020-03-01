@@ -4,7 +4,10 @@
       <h1>// {{ story.name }}</h1>
       <p style="font-style=italic;">{{ story.content.creation_date }}</p>
       <br />
-      <ChapterBody :unformattedChapterBody="story.content.chapter_body" />
+      <div v-for="(chapter, chapterIndex) in story.content.chapter_bloks" :key="chapterIndex" class="chapter__body">
+        <h3 v-if="chapter.heading">{{ chapter.heading }}</h3>
+        <ChapterBody :unformattedChapterBody="chapter.body" />
+      </div>
       <TextReactions />
     </div>
     <div class="card__container is-offset is-darkish--1">
@@ -24,16 +27,13 @@ export default {
     try {
       const res = await $axios.$post('https://gapi.storyblok.com/v1/api', {
         query: `{
-          PieceItems(starts_with: "${params.category}/${params.piece}") {
+          ContentNodes(starts_with: "${params.category}/${params.piece}") {
             items {
               id
               name
               full_slug
               tag_list
-              content {
-                chapter_body
-                creation_date
-              }
+              content
             }
           }
         }`,
@@ -46,16 +46,15 @@ export default {
   },
   computed: {
     story: function() {
-      if (this.PieceItems && this.PieceItems.items) {
-        return this.PieceItems.items[0]
+      if (this.ContentNodes && this.ContentNodes.items) {
+        return this.ContentNodes.items[0]
       } else {
         return {
           name: 'example name',
           id: 'exampleId',
           tag_list: ['some tag'],
           content: {
-            creation_date: "some date",
-            chapter_body: "some body"
+            chapter_bloks: [{ heading: 'some heading', body: 'some body' }]
           }
         }
       }
@@ -71,8 +70,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.text {
-  display: none;
+.chapter__body {
+  padding-bottom: 2rem;
+  & div {
+    line-height: 1.5rem;
+  }
 }
 </style>
 

@@ -9,7 +9,7 @@
     >
       <nuxt-link :to="'/' + story.full_slug" :name="story.name">
         <h3>{{ story.name }}</h3>
-        <p>{{ story.full_slug.split('/')[0] }} // {{ story.content.creation_date }}</p>
+        <p>{{ story.full_slug.split('/')[0] }} // {{ story.created_at }}</p>
         <div class="tag__container">
           <span
             class="card__container is-ghost is-mini is-mini--mini"
@@ -49,19 +49,19 @@ export default {
           'https://gapi.storyblok.com/v1/api',
           {
             query: `{
-            PieceItems(with_tag:"${this.parentTagString}", per_page:2, excluding_ids:"${this.parentId}") {
+            ContentNodes(with_tag:"${this.parentTagString}", per_page:2, excluding_ids:"${this.parentId}") {
               items {
                 id
                 full_slug
                 name
-                content { creation_date }
+                created_at
               }
             }
           }`,
             variables: null
           }
         )
-        return res.data.PieceItems.items
+        return res.data.ContentNodes.items
       } catch (res) {
         console.error(res)
       }

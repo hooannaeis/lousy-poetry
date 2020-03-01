@@ -18,25 +18,31 @@
   animation-name: play27;
 }
 
-.grow-enter-active, .list-leave-active {
-  transition: transform 0.5s;
-}
-.grow-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateX(20rem);
+/* base */
+.grow {
+  backface-visibility: hidden;
+  z-index: 1;
 }
 
-
-
-
-.slide-fade-enter-active {
-  transition: all .1s ease;
+/* moving */
+.grow-move {
+  transition: all 600ms ease-in-out 50ms;
 }
-.slide-fade-leave-active {
-  transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+
+/* appearing */
+.grow-enter-active {
+  transition: all 400ms ease-out;
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateY(10px);
+
+/* disappearing */
+.grow-leave-active {
+  transition: all 200ms ease-in;
+  position: absolute;
+  z-index: 0;
+}
+
+/* appear at / disappear to */
+.grow-enter,
+.grow-leave-to {
   opacity: 0;
 }

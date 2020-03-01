@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p
+    <div
       v-for="(formattedChapterBody, formattedChapterBodyIndex) in formattedChapterBodies"
       :key="formattedChapterBodyIndex"
-    >{{ formattedChapterBody }}</p>
+    >{{ formattedChapterBody }}</div>
   </div>
 </template>
 
