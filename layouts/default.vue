@@ -1,11 +1,6 @@
 <template>
   <div style="position:relative; min-height: 100vh">
     <nav class="nav__container">
-      <div class="nav__logo">
-        <nuxt-link to="/">
-          <img src="/lousy-poetry-logo.png" alt="text saying lousy poetry in cursive writing">
-        </nuxt-link>
-      </div>
     </nav>
     <nuxt />
     <footer>
@@ -16,20 +11,17 @@
         <nuxt-link to="/privacy-stuff">
           <li class="txt-is-bright">Privacy Stuff</li>
         </nuxt-link>
+        <nuxt-link to="/about-us">
+          <li class="txt-is-bright">About Us</li>
+        </nuxt-link>
       </ul>
     </footer>
   </div>
 </template>
 
 <script>
-import LousyLogo from '@/components/LousyLogo'
-import IconBase from '@/components/IconBase'
 
 export default {
-  components: {
-    LousyLogo,
-    IconBase
-  },
   computed: {
     pageTitle: function() {
       const baseTitle = "LP // "
