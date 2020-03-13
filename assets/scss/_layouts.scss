@@ -44,15 +44,9 @@
 .border-top--dark {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px dotted $colorDark;
+  border-top: 1px dotted $colorDark
 }
 .grid__container {
-  &--2c {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    padding: 1rem;
-  }
   &--3c {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -92,16 +86,20 @@ footer {
   padding: 2rem;
 }
 
+
 @each $colorName in 'colorPrimary' 'colorDark' 'colorBright' {
   .is-neumorph--#{$colorName} {
-    -webkit-box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%),
-      -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
-    box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%),
-      -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
+    -webkit-box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%), -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
+    box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%), -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
     -webkit-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
     background-color: map-get($colorMap, $colorName);
     transition: 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      -webkit-box-shadow: 4px 4px 8px darken(map-get($colorMap, $colorName), 15%), -4px -4px 8px lighten(map-get($colorMap, $colorName), 15%);
+      box-shadow: 4px 4px 8px darken(map-get($colorMap, $colorName), 15%), -4px -4px 8px lighten(map-get($colorMap, $colorName), 15%);
+    }
   }
 }
 
@@ -139,28 +137,4 @@ footer {
 .is-dark {
   background-color: $colorDark;
   color: $colorBright;
-}
-
-.payment-container {
-  min-width: 7rem;
-  padding: 0.5rem;
-
-  &__image {
-    min-height: 3rem;
-    background-repeat: no-repeat;
-    background-position: center;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  
-  &--mastercard {
-    background-image: linear-gradient(rgba(229, 40, 54, 0.4), rgba(247, 152, 29, 0.4));
-  }
-  &--visa {
-    background-image: linear-gradient(rgba(237, 124, 0, 0.4), rgba(41, 54, 136, 0.4))
-  }
-  &--paypal {
-    background-image: linear-gradient(rgba(104, 155, 208, 0.4), rgba(41, 54, 136, 0.4))
-  }
 }

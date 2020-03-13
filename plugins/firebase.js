@@ -11,6 +11,7 @@ if (!firebase.apps.length) {
     appId: '1:462246470138:web:3dc97d03f86434d662c443'
   }
   firebase.initializeApp(config)
+  firebase.firestore().settings({})
 }
 const fireDb = firebase.firestore()
 export { fireDb }

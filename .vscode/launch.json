@@ -5,17 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Aktuelle Datei",
-      "type": "python",
-      "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal"
-    },
-    {
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
       "program": "${workspaceFolder}\\server\\index.js"
     }
   ]
