@@ -26,7 +26,7 @@
         >✓</span>
         <nuxt-link :to="story.full_slug" :name="story.name" :id="story.id">
           <h2>{{ story.name }}</h2>
-          <p>{{ story.full_slug.split('/')[0] }} // {{ story.created_at }}</p>
+          <p>{{ story.full_slug.split('/')[0] }} // {{ story.first_published_at.split('T')[0] }}</p>
         </nuxt-link>
         <div class="tag__container">
           <span
@@ -119,13 +119,13 @@ export default {
     try {
       const res = await $axios.$post('https://gapi.storyblok.com/v1/api', {
         query: `{
-          ContentNodes(sort_by:"created_at:desc")  {
+          ContentNodes(sort_by:"first_published_at:desc")  {
             items {
               id
               full_slug
               tag_list
               name
-              created_at
+              first_published_at
             }
           }
         }`,

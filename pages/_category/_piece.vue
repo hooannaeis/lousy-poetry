@@ -2,10 +2,10 @@
   <div>
     <div class="card__container" style="padding-bottom: 3rem;">
       <h1>// {{ story.name }}</h1>
-      <p style="font-style=italic;">{{ story.content.creation_date }}</p>
+      <p style="font-style=italic;">{{ story.first_published_at.split('T')[0] }}</p>
       <br />
       <div v-for="(chapter, chapterIndex) in story.content.chapter_bloks" :key="chapterIndex" class="chapter__body">
-        <h3 v-if="chapter.heading">{{ chapter.heading }}</h3>
+        <h4 v-if="chapter.heading">{{ chapter.heading }}</h4>
         <ChapterBody :unformattedChapterBody="chapter.body" />
       </div>
       <TextReactions />
@@ -29,6 +29,7 @@ export default {
         query: `{
           ContentNodes(starts_with: "${params.category}/${params.piece}") {
             items {
+              first_published_at
               id
               name
               full_slug
