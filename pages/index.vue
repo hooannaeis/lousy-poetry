@@ -16,10 +16,15 @@
       <div
         class="card__container"
         v-for="story in filteredStories"
-        v-bind:key="story.id"
+        :key="story.id"
         :class="'is-darkish--' + (categoryColors[story.full_slug.split('/')[0] ])"
+        :style="[reactedStories.includes(JSON.stringify(story.id)) ? {'position': 'relative', 'opacity': '0.6'} : '']"
       >
-        <nuxt-link :to="story.full_slug" :name="story.name">
+        <span
+          style="position: absolute; top:0.5rem; right:0.5rem;"
+          v-if="reactedStories.includes(JSON.stringify(story.id))"
+        >✓</span>
+        <nuxt-link :to="story.full_slug" :name="story.name" :id="story.id">
           <h2>{{ story.name }}</h2>
           <p>{{ story.full_slug.split('/')[0] }} // {{ story.created_at }}</p>
         </nuxt-link>
@@ -62,6 +67,15 @@ export default {
     }
   },
   computed: {
+    reactedStories: function() {
+      try {
+        const reactions = JSON.parse(localStorage.getItem('vuex')).textReactions
+        return Object.keys(reactions)
+      } catch (e) {
+        console.error(e)
+        return []
+      }
+    },
     categoryColors: function() {
       if (this.ContentNodes.items) {
         let agg = {}
