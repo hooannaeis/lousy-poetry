@@ -89,6 +89,11 @@ footer {
 
 @each $colorName in 'colorPrimary' 'colorDark' 'colorBright' {
   .is-neumorph--#{$colorName} {
+
+//     background: linear-gradient(145deg, #5bc6ff, #4da7db);
+// box-shadow:  20px 20px 60px #489dcf, 
+//              -20px -20px 60px #62d5ff;
+
     -webkit-box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%), -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
     box-shadow: 2px 2px 4px darken(map-get($colorMap, $colorName), 8%), -2px -2px 4px lighten(map-get($colorMap, $colorName), 8%);
     -webkit-transition: 0.2s ease-in-out;
