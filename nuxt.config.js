@@ -28,13 +28,6 @@ module.exports = {
     '~/plugins/firebase.js'
   ],
 
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: [],
-  /*
-   ** Nuxt.js modules
-   */
   modules: ['@nuxtjs/axios', '@nuxtjs/style-resources'],
   styleResources: {
     scss: ['assets/scss/main.scss']
@@ -59,9 +52,12 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) { }
   },
   generate: {
     fallback: true
-  }
+  },
+  buildModules: [
+    '@nuxtjs/dotenv'
+  ],
 }
