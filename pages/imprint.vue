@@ -4,7 +4,7 @@
       Imprint
     </h1>
     <div>
-      yup, there some important data to be displayed here. 
+      this page is maintained by Hannes Kuhl. Visit <a href="https://hannes.cool" target="_blank" style="border-bottom: 1px solid black">his main websites</a> to see more like this
     </div>
   </div>
 </template>

@@ -2,9 +2,15 @@
   <div>
     <div class="card__container" style="padding-bottom: 3rem;">
       <h1>// {{ story.name }}</h1>
-      <p style="font-style=italic;">{{ story.first_published_at.split('T')[0] }}</p>
+      <p style="font-style=italic;">
+        {{ story.first_published_at.split('T')[0] }}
+      </p>
       <br />
-      <div v-for="(chapter, chapterIndex) in story.content.chapter_bloks" :key="chapterIndex" class="chapter__body">
+      <div
+        v-for="(chapter, chapterIndex) in story.content.chapter_bloks"
+        :key="chapterIndex"
+        class="chapter__body"
+      >
         <h4 v-if="chapter.heading">{{ chapter.heading }}</h4>
         <ChapterBody :unformattedChapterBody="chapter.body" />
       </div>
@@ -66,7 +72,7 @@ export default {
     this.$store.commit('textReactions/SET_ACTIVE_PIECE_ID', {
       activePieceId: this.story.id
     })
-  }
+  },
 }
 </script>
 
@@ -78,4 +84,3 @@ export default {
   }
 }
 </style>
-

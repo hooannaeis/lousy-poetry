@@ -4,17 +4,19 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'lousy poetry // a personal collection of what I call poetry',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content:
+          'here, I will publish everything that I call done for now',
+      },
+      { name: 'robots', content: 'index, follow' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }, { rel: "canonical", href: "https://poetry.hannes.cool" }]
   },
   /*
    ** Customize the progress-bar color
